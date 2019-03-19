@@ -1,0 +1,89 @@
+What is needed for a base image?
+
+
+Stuff:	0. Dependency packages
+	1. i3-config 
+	2. scripts
+	3. Programs
+	4. Bitwarden
+	5. Vim
+	6. fish
+	7. NordVpn
+	8. DockingStation
+	9. i3 Notifications dunst
+
+0. Dependency packages
+All packages that are needed for later steps:
+- i3		[apt]
+- make 		[apt] sudo apt install make
+- feh		[apt] sudo apt install feh
+- git		[apt] sudo apt install git
+- playerctl 	[apt] sudo apt install playerctl
+- compton 	[apt] sudo apt install compton
+- i3blocks	[apt] sudo apt install i3blocks
+- snap		[apt] sudo apt install snap
+- arandr	[apt] sudo apt install arandr
+- xautolock	[apt] sudo apt install xautolock
+- light		[NACHSCHAUEN]
+- blueman	[apt]
+- nm-applet	[apt]
+- dunst		[apt]
+- fish		[apt]
+- gcc		[apt]
+- gdb		[apt]
+- gpg		[apt]
+- gpg-agent	[apt]
+- openvpn	[apt]
+- zip		[apt]
+- openconnect	[apt]
+- openpyn 	[github]
+- solaar	
+- okular	[apt]
+- dmks (for docking)		[apt]
+
+1. i3-config
+Load dotfiles from github
+
+
+2. scripts
+Load scripts from github and install them
+Dependencies:
+-
+
+
+3. Programs
+Install important Programs:
+- Visual Studio Code	[snap] sudo snap install vscode --classic
+- Slack			[snap] sudo snap install slack --classic
+- Dropbox		[apt]  sudo apt install dropbox
+- Thunderbird		[apt]  sudo apt install thunderbird 
+- Bitwarden		[NACHSCHAUEN]
+- Spotify		[snap] sudo snap install spotify
+- htop			[snap] sudo snap install htop
+- Firefox		[apt]  sudo apt install firefox
+- arandr		[apt]  sudo apt install arandr
+- albert		[NACHSCHAUEN]
+- Discord		[apt]
+- Texstudio		[apt]
+
+
+6. fish
+Install fish and config files for it (git?)
+
+
+7. NordVPN
+Openpyn installieren
+
+
+8. Docking Station
+Needed dmks and DisplayLink driver (upload to git) https://www.displaylink.com/downloads/ubuntu
+
+sudo dpkg configure -a
+
+sudo apt-get dist-upgrade
+
+sudo apt-get install --reinstall dkms
+
+sudo ./displaylink-xxx.run
+
+
