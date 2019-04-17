@@ -39,7 +39,9 @@ All packages that are needed for later steps:
 - openpyn 	[github]
 - solaar	
 - okular	[apt]
-- dmks (for docking)		[apt]
+- dmks 		[apt] dep for docking station
+- bootstick cr  [apt] sudo apt install usb-creator-gtk 
+- gparted	[apt] sudo apt install gparted 
 
 1. i3-config
 Load dotfiles from github
@@ -86,4 +88,6 @@ sudo apt-get install --reinstall dkms
 
 sudo ./displaylink-xxx.run
 
+https://github.com/AdnanHodzic/displaylink-debian
+https://www.displaylink.com/downloads/ubuntu
 
