@@ -14,20 +14,13 @@ Stuff:	0. Dependency packages
 
 0. Dependency packages
 All packages that are needed for later steps:
-- i3		[apt]
 - make 		[apt] sudo apt install make
 - feh		[apt] sudo apt install feh
 - git		[apt] sudo apt install git
-- playerctl 	[apt] sudo apt install playerctl
 - compton 	[apt] sudo apt install compton
-- i3blocks	[apt] sudo apt install i3blocks
 - snap		[apt] sudo apt install snap
+- xrandr	[apt] sudo apt install arandr
 - arandr	[apt] sudo apt install arandr
-- xautolock	[apt] sudo apt install xautolock
-- light		[NACHSCHAUEN]
-- blueman	[apt]
-- nm-applet	[apt]
-- dunst		[apt]
 - fish		[apt]
 - gcc		[apt]
 - gdb		[apt]
@@ -36,21 +29,46 @@ All packages that are needed for later steps:
 - openvpn	[apt]
 - zip		[apt]
 - openconnect	[apt]
-- openpyn 	[github]
-- solaar	
+- solaar	[apt]
 - okular	[apt]
 - dmks 		[apt] dep for docking station
-- bootstick cr  [apt] sudo apt install usb-creator-gtk 
 - gparted	[apt] sudo apt install gparted 
 
-1. i3-config
-Load dotfiles from github
+
+0.5 i3 Dependencies
+- i3		[apt]
+- i3blocks	[apt] sudo apt install i3blocks
+- xautolock	[apt] sudo apt install xautolock
+- nm-applet	[apt]
+- blueman	[apt]
+- light		[NACHSCHAUEN]
+- playerctl 	[apt] sudo apt install playerctl
+- dunst		[apt]
 
 
-2. scripts
-Load scripts from github and install them
-Dependencies:
--
+0.6 openpyn 	[github] https://github.com/jotyGill/openpyn-nordvpn
+python3-setuptools 
+wget 
+python3-pip 
+unzip
+
+pip:
+requests 
+colorama 
+coloredlogs 
+verboselogs
+
+install:
+sudo python3 -m pip install --upgrade openpyn
+
+setup:
+sudo openpyn --init
+
+
+0.7 albert
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_18.04/ /' > /etc/apt/sources.list.d/home:manuelschneid3r.list"
+sudo apt update
+sudo apt install albert
 
 
 3. Programs
@@ -63,18 +81,14 @@ Install important Programs:
 - Spotify		[snap] sudo snap install spotify
 - htop			[snap] sudo snap install htop
 - Firefox		[apt]  sudo apt install firefox
-- arandr		[apt]  sudo apt install arandr
 - albert		[NACHSCHAUEN]
-- Discord		[apt]
 - Texstudio		[apt]
+- IntelliJ		[snap] sudo snap install intellij-idea-community --classic
+- skype			[snap] sudo snap install skype --classic  
 
 
 6. fish
 Install fish and config files for it (git?)
-
-
-7. NordVPN
-Openpyn installieren
 
 
 8. Docking Station
@@ -82,12 +96,20 @@ Needed dmks and DisplayLink driver (upload to git) https://www.displaylink.com/d
 
 sudo dpkg configure -a
 
-sudo apt-get dist-upgrade
-
-sudo apt-get install --reinstall dkms
-
 sudo ./displaylink-xxx.run
 
 https://github.com/AdnanHodzic/displaylink-debian
 https://www.displaylink.com/downloads/ubuntu
+
+
+
+x1. i3-config
+Load dotfiles from github
+
+
+x2. scripts
+Load scripts from github and install them
+Dependencies:
+-
+
 

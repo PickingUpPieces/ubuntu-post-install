@@ -98,13 +98,6 @@ function install_from_list() {
 	echo_message title "Starting installation of ${1}..."
 	# Variables
 	LIST=$(dirname "$0")'/data/'${2}'.list'
-	# Draw window
-	if (eval `resize` && whiptail \
-		--title "Install ${2^}" \
-		--yesno "Current list of packages that will be installed: \n\n$(cat ${LIST}) \n\nWould you like to proceed?" \
-		$LINES $COLUMNS $(( $LINES - 12 )) \
-		--scrolltext \
-		3>&1 1>&2 2>&3) then
 		# Install loop
 		for PACKAGE in $(cat $LIST); do
 			# If package is not installed
@@ -122,16 +115,44 @@ function install_from_list() {
 				echo_message info "Package '$PACKAGE' is installed."
 			fi
 		done
-		# Finished
-		echo_message success "Installation of ${1} complete."
-		whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
 		${3}
-	else
-		# Cancelled
-		echo_message info "Installation of ${1} cancelled."
-		${3}
-	fi
 }
+
+# Install from list function
+#
+# ${1} = Name
+# ${2} = list-name
+# ${3} = return_function
+
+
+function install_snap_from_list() {
+	# echo_message header "Starting 'install_from_list' function..."
+	echo_message title "Starting installation of ${1}..."
+	# Variables
+	LIST=$(dirname "$0")'/data/'${2}'.list'
+	# Draw window
+	# Install loop
+		while IFS= read -r PACKAGE
+		do
+	# for PACKAGE in $(cat $LIST); do
+			# If package is not installed
+		#	if [ $(check_package_installed $PACKAGE) != 0 ]; then
+				# Install package
+		#		echo_message warning "Package '$PACKAGE' is not installed. Installing..."
+				# Admin privileges
+				install_snap_package "$(echo $PACKAGE | cut -d' ' -f1)" "$PACKAGE"
+				# Check if failed
+				if [[ $? != 0 ]]; then
+					echo_message error "Error installing '$PACKAGE'."
+				fi
+		#	else
+				# Show already installed message
+		#		echo_message info "Package '$PACKAGE' is installed."
+		#	fi
+		done < "$LIST"
+		${3}
+}
+
 
 # Install flatpak package
 #
@@ -177,28 +198,19 @@ function install_flatpak_package() {
 function install_snap_package() {
 	# echo_message header "Starting 'install_snap_package' function..."
 	# If package is not installed
-	if [[ $(snap list | grep ${2} &> /dev/null; echo $?) != 0 ]]; then
+	if [[ $(snap list | grep ${1} &> /dev/null; echo $?) != 0 ]]; then
 		echo_message info "${1} is not installed. Installing..."
-		if (whiptail \
-			--title "Install ${1}" \
-			--yesno "The snap package for ${1} is not installed. \n\nProceed with installation of '${2}'?" 10 64) then
-			# Install
-			echo_message info "Installing snap package '${2}'..."
+		# Install
 			# Admin privileges
 			superuser_do "snap install ${2}"
 			# Finished
 			echo_message success "Installation of '${2}' is complete."
-			whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
+			# whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
 			${3}
-		else
-			# Cancelled
-			echo_message info "Installation of ${1} cancelled."
-			${3}
-		fi
 	else
 		# Already installed
 		echo_message info "Snap package '${2}' is already installed."
-		whiptail --title "Installed" --msgbox "${1} is already installed." 8 56
+		# whiptail --title "Installed" --msgbox "${1} is already installed." 8 56
 		${3}
 	fi
 }

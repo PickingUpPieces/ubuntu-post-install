@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+
+function system_install {
+	
+	install_all_utils
+
+	system_cleanup
+}

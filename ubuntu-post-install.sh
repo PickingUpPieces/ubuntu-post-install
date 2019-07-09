@@ -38,16 +38,10 @@ function main {
 		--menu "\nWhat would you like to do?" \
 		--cancel-button "Quit" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
+		'system_install'	'Setup new system' \
+		'install_all'		'Install all packages' \
 		'system_update'         'Perform system updates' \
-		'install_favs'          'Install preferred applications' \
-		'install_favs_dev'      'Install preferred development tools' \
-		'install_favs_utils'    'Install preferred utilities' \
-		'install_gnome'         'Install preferred GNOME software' \
 		'install_codecs'        'Install multimedia codecs' \
-		'install_fonts'         'Install additional fonts' \
-		'install_snap_apps'     'Install Snap applications' \
-		'install_flatpak_apps'  'Install Flatpak applications' \
-		'install_thirdparty'    'Install third-party applications' \
 		'setup_dotfiles'        'Configure dotfiles' \
 		'system_configure'      'Configure system' \
 		'system_cleanup'        'Cleanup the system' \

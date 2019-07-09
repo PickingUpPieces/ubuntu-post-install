@@ -1,5 +1,11 @@
 curl
 software-properties-common
-wget
 whiptail
-xterm
+dmks
+feh
+zip
+wget
+unzip
+python3-setuptools
+python3-pip
+snap

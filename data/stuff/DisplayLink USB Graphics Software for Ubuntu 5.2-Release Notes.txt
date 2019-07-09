@@ -1,0 +1,126 @@
+=============================================================================
+=============================================================================
+
+        DisplayLink Ubuntu Software Release Note
+
+Build: 5.2.14 (5447f8a)
+Date: 18th June 2019
+
+Extensible Virtual Display Interface version included: v1.5.0-r1-76 (a1e1135)
+=============================================================================
+=============================================================================
+
+
+A. Introduction
+===============
+
+This is DisplayLink Driver Software v5.2.0 for Ubuntu. It provides production quality support for DisplayLink USB 3.0 devices on specific variants of desktop Ubuntu Linux.
+
+The driver enables video support for products using DisplayLink USB 3.0 technology. Standard native Ubuntu drivers provide support for DisplayLink audio and Ethernet interfaces.
+
+
+A1. Important notes about DL-6xxx, DL5xxx, DL-3x00 and DL-41xx Firmware
+=======================================================================
+
+This software release contains an embedded firmware image. DL-6xxx, DL-5xxx, DL-3xxx and DL-41xx devices will be automatically upgraded with this firmware upon connection if required.
+
+The upgrade is silent, therefore screens connected to DL-6xxx, DL-5xxx, DL-3xxx or DL-41xx devices may require a few seconds to appear when devices are connected for the first time, or after devices have been used on other platforms and OSes.
+
+B. Contents
+===========
+
+A.  Introduction
+A1. Important notes about DL-6xxx, DL-5xxx, DL-3xxx and DL-41xx firmware
+B.  Contents
+C.  Bugs fixed in this release
+D.  Supported O/S variants
+E.  Release components
+F.  How to install
+G.  Supported features & hardware
+H.  Limitations & known issues
+I.  Future development
+
+C.  Bugs fixed in this release
+==============================
+
+- DL-3000/DL-5000 series, audio source did not switch to internal audio
+  automatically when switched to laptop display mode only. (27792)
+
+- Abnormal HDMI video on 2560x1440@75 mode for specific monitor when
+  connected through PS176 converter. (29523)
+
+- DL-6000 series: if 2 DisplayPort + 1 HDMI displays are connected to the
+  chip and HDMI is removed during sleep, the matching DisplayPort output
+    doesn't light up at sleep recovery. (29625)
+
+- Improvement: change audio output to laptop internal when DisplayLink
+  video output is disabled. (29434)
+
+- DL-6000 series: 4K monitor could only reach 2048x1152 when connected via
+  some DisplayPort++ type 2 passive adapter (29859)
+
+- On mixed technology DL-6000 series product, the HDMI output may only
+  be driven at 4Kp30 max instead of 4Kp60 even with DisplayLink
+    driver installed (29964)
+
+- Monitor connected to DL-6xxx has fixed resolution of 640X480 (29679)
+
+
+D. Supported O/S variants
+=========================
+
+This release has been prepared to be compatible with Ubuntu 19.04, 18.04 and 16.04. Other variants and editions may be compatible if they meet minimum O/S requirements, but are not supported by DisplayLink.
+
+The Software contains binaries which work on Intel x86 platform (32 bit and 64 bit).
+Supported Linux Kernel version range is from 4.2 to 5.2.
+Minimum supported Xorg version is 1.16.
+
+E. Release components
+=====================
+The Software consists of an open-source kernel mode driver (EVDI) with an accompanying library (libevdi), and a supporting binary application compatible with Intel x86 platform.
+Source code for the open-source components can be found at DisplayLink's GitHub, https://github.com/DisplayLink
+
+F. How to install
+=================
+
+To install the release, from a terminal window, with root permissions use the command:
+
+sudo ./displaylink-driver-XXXX.run
+
+Where displaylink-driver-XXXX.run is the name of the extracted DisplayLink driver.
+
+The dkms framework is required for installation of DisplayLink. This can be installed with the command: sudo apt-get install dkms
+
+More detailed information on installation can be found at http://support.displaylink.com/knowledgebase/articles/615714#ubuntu
+
+G. Supported features & hardware
+================================
+
+This driver will support up to 2 displays connected to DisplayLink devices. More than 2 DisplayLink displays may work, but not supported or tested by DisplayLink.
+
+Resolutions up to 4K are supported on the appropriate DisplayLink hardware.
+
+Device families supported:
+- DL-6xxx
+- DL-5xxx
+- DL-41xx
+- DL-3xxx
+
+DL-1x5 and DL-1x0 devices use the open source udl driver, which is not developed or maintained by DisplayLink.
+
+H. Limitations & known issues
+=============================
+
+A list of limitations and known issues can be found here:
+http://support.displaylink.com/knowledgebase/articles/641668
+
+I. Future development
+======================
+
+DisplayLink are open to suggestions and feedback on improving the proposed architecture and will gladly review patches or proposals from the developer community. Please find a current list of areas we identify as requiring attention below.
+
+- In this release, the user mode driver service is running with root permissions. In future versions, we would like to reduce the privilege level required for this process - e.g. by using a separate low-privileged user and a separate group, to ensure the permissions needed for driving DisplayLink screens are as low as possible.
+
+- The communication between the EVDI kernel module and the wrapper libevdi library is not access-controlled or authenticated. This could be improved in future releases, making it harder to compromise the data EVDI is sending and receiving.
+
+- EVDI kernel module driver is currently a platform_driver, for multiple reasons; most importantly because virtual displays are not discoverable, i.e. cannot be enumerated at the hardware level. EVDI is also a generic device, not tied to any particular kind of device, transport layer or a bus.
