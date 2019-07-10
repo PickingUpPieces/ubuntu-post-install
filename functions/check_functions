@@ -6,33 +6,6 @@ function check_package_installed() {
 	dpkg-query -W --showformat='${Status}\n' $@ | grep "install ok installed" &> /dev/null; echo $?
 }
 
-# Check if single package is installed
-# ${1} = package, ${2} = return_function
-function check_package() {
-	# echo_message header "Starting 'check_package' function"
-	# if package is not installed
-	if [ $(check_package_installed ${1}) != 0 ]; then
-		# draw window
-		if (whiptail \
-			--title "Install ${1}" \
-			--yesno "This function requires '${1}' but it is not present on your system. \n\nWould you like to install it to continue? " 10 64) then
-			# Install
-			echo_message info "Installing '${3}'..."
-			superuser_do "apt install -y ${1}"
-			# Finished
-			echo_message success "${1} is installation complete."
-			whiptail --title "Finished" --msgbox "Installation of ${1} Flatpak complete." 8 56
-			${2}
-		else
-			# Cancelled
-			echo_message info "Installation of ${1} cancelled."
-			${2}
-		fi
-	else
-		echo_message info "Function dependency '${1}' is installed."
-	fi
-}
-
 
 # $1 = Package name
 # returns 0 if found and 1 if not
@@ -40,7 +13,9 @@ function check_pip_package_installed {
 	pip list --format=columns | grep $1 &> /dev/null; echo $?
 }
 
+
 # $1 = Package name
+# returns 0 if found and 1 if not
 function check_pip3_package_installed {
 	pip3 list --format=columns | grep $1 &> /dev/null; echo $?
 }
@@ -71,41 +46,6 @@ function check_flatpak_repo {
 	fi
 }
 
-# Check for and install if missing the required packages for this script set.
-function check_dependencies {
-	echo_message header "Starting 'check_dependencies' function"
-	echo_message title "Checking if necessary dependencies are installed..."
-	# Variables
-	LIST=$(dirname "$0")'/data/dependencies.list'
-	# Check dependencies
-	for PACKAGE in $(cat $LIST); do 
-		# If package is not installed
-		if [ $(check_package_installed $PACKAGE) != 0 ]; then
-			echo_message info "This script requires '$PACKAGE' and it is not present on your system."
-			echo_message question 'Would you like to install it to continue? (Y)es, (N)o : ' && read REPLY
-			case $REPLY in
-			# Positive action
-			[Yy]* ) 
-				echo_message warning "Requires root privileges"
-				sudo apt install -y $PACKAGE
-				echo_message success "Package '$PACKAGE' installed."
-				;;
-			# Negative action
-			[Nn]* )
-				echo_message info "Exiting..."
-				exit 99
-				;;
-			# Error
-			* )
-				echo_message error 'Sorry, try again.' && check_dependencies
-				;;
-			esac
-		else
-			echo_message info "Dependency '$PACKAGE' is installed."
-		fi
-	done
-	echo_message success "All dependencies are installed. :)"
-}
 
 # Check if current user is in the sudo group
 function check_privileges {

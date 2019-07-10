@@ -11,28 +11,18 @@ function install_package() {
 	# If package is not installed
 	if [ $(check_package_installed ${2}) != 0 ]; then
 		echo_message info "${2} is not installed. Installing..."
-		if (whiptail \
-			--title "Install ${1^}" \
-			--yesno "Proceed with installation of ${1^}?" 8 56) then
-			# Install
-			echo_message info "Installing package '${2}'..."
-			# Admin privileges
-			superuser_do "apt install -y ${2}"
-			# Finished
-			echo_message success "Installation of package '${2}' is complete."
-			whiptail --title "Finished" --msgbox "Installation of ${1} complete." 8 56
-			# return
-			${3}
-		else
-			# Cancelled
-			echo_message info "Installation of ${1} cancelled."
-			# return
-			${3}
-		fi
+		# Install
+		superuser_do "apt install -y ${2}"
+	
+		# Finished
+		echo_message success "Installation of package '${2}' is complete."
+	
+		# return
+		${3}
+		
 	else
 		# Already installed
 		echo_message info "Package '${2}' is already installed."
-		whiptail --title "Finished" --msgbox "Installation of ${1} is already complete." 8 56
 		# return
 		${3}
 	fi
@@ -63,7 +53,7 @@ function install_remote_package() {
 				curl -O ${3}/${2}_amd64.deb
 				;;
 			*)
-				whiptail --title "Error." --msgbox "No remote packages available to download." 8 56
+				echo_message error "No remote packages available to download." 
 				${4}
 				;;
 		esac
@@ -77,12 +67,10 @@ function install_remote_package() {
 		rm ${2}*.deb
 		# Done
 		echo_message success "Installation of ${1} complete."
-		whiptail --title "Finished" --msgbox "Installation of ${1} complete." 8 56
 		${4}
 	else
 		# Already installed
 		echo_message info "${1} already installed."
-		whiptail --title "Finished" --msgbox "${1} is already installed." 8 56
 		${4}
 	fi
 }
@@ -118,6 +106,33 @@ function install_from_list() {
 		${3}
 }
 
+
+
+# Install snap package
+#
+# ${1} = Name
+# ${2} = package
+# ${3} = return_function
+
+function install_snap_package() {
+	# echo_message header "Starting 'install_snap_package' function..."
+	# If package is not installed
+	if [[ $(snap list | grep ${1} &> /dev/null; echo $?) != 0 ]]; then
+		echo_message info "${1} is not installed. Installing..."
+		# Install
+			# Admin privileges
+			superuser_do "snap install ${2}"
+			# Finished
+			echo_message success "Installation of '${2}' is complete."
+			# whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
+			${3}
+	else
+		# Already installed
+		echo_message info "Snap package '${2}' is already installed."
+		# whiptail --title "Installed" --msgbox "${1} is already installed." 8 56
+		${3}
+	fi
+}
 # Install from list function
 #
 # ${1} = Name
@@ -189,31 +204,6 @@ function install_flatpak_package() {
 	fi
 }
 
-# Install snap package
-#
-# ${1} = Name
-# ${2} = package
-# ${3} = return_function
-
-function install_snap_package() {
-	# echo_message header "Starting 'install_snap_package' function..."
-	# If package is not installed
-	if [[ $(snap list | grep ${1} &> /dev/null; echo $?) != 0 ]]; then
-		echo_message info "${1} is not installed. Installing..."
-		# Install
-			# Admin privileges
-			superuser_do "snap install ${2}"
-			# Finished
-			echo_message success "Installation of '${2}' is complete."
-			# whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
-			${3}
-	else
-		# Already installed
-		echo_message info "Snap package '${2}' is already installed."
-		# whiptail --title "Installed" --msgbox "${1} is already installed." 8 56
-		${3}
-	fi
-}
 
 
 # Install pip package
