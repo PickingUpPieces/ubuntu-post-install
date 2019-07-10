@@ -33,6 +33,12 @@ function check_package() {
 	fi
 }
 
+
+# $1 = Package name
+function check_pip_package_installed {
+	pip list --format=columns | grep $1 &> /dev/null; echo $?
+}
+
 # Check for Flatpak repository
 # ${1} = remote, ${2} = https://remote.example.com/, ${3} = return_function
 function check_flatpak_repo {

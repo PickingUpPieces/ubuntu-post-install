@@ -3,8 +3,8 @@
 
 
 function system_install {
-	
+	echo_message info "system install"
 	install_all_utils
-
-	system_cleanup
+	install_thirdparty
+#	system_cleanup
 }

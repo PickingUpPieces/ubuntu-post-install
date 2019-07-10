@@ -27,9 +27,9 @@ function install_codecs {
 
 function install_all_utils {
 	install_from_list "Install dependencies" "dependencies" 
-	install_from_list "Install pip dependencies" "dependencies-pip" 
+	install_pip_from_list "Install pip dependencies" "dependencies-pip" 
 	install_from_list "preferred utilities" "utils" 
 	install_from_list "preferred development tools" "dev-tools" 
         install_from_list "VPN" "vpn" 
-	install_snap_from_list "snap programs" "utils-snap" system_install
+	install_snap_from_list "snap programs" "utils-snap" 
 }
