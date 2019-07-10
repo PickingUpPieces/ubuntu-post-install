@@ -218,30 +218,41 @@ function install_snap_package() {
 
 # Install pip package
 #
-# ${1} = Name
-# ${2} = package
-# ${3} = return_function
+# $1 = package
+# $2 = return_function
 
 function install_pip_package() {
 	# echo_message header "Starting 'install_package' function..."
 	# If package is not installed
-	# if [ $(check_package_installed ${2}) != 0 ]; then
-	#	echo_message info "${2} is not installed. Installing..."
+	if [ $(check_pip_package_installed $1) != 0 ] && [ $(check_pip3_package_installed $1) != 0 ]; then
+		echo_message info "$1 is not installed. Installing..."
 		# Install
-			echo_message info "Installing package '${2}'..."
+			echo_message info "Installing package '$1'..."
 			# Admin privileges
-			$(pip install ${2})
+			pip install $1
+			
 			# Finished
-			echo_message success "Installation of package '${2}' is complete."
+			if [ $? != 0 ]; then
+				echo_message error "Error installing '$PACKAGE' with pip."
+				# Try pip3
+				pip3 install $1
+
+				if [ $? != 0]; then
+					echo_message error "Error installing '$PACKAGE' with pip3."
+				fi
+			else
+				echo_message success "Installation of package '$1' is complete."
+			fi
+		
 			# return
-			${3}
-#	else
+			$2
+	else
 		# Already installed
-#		echo_message info "Package '${2}' is already installed."
+		echo_message info "Package '$1' is already installed."
 #		whiptail --title "Finished" --msgbox "Installation of ${1} is already complete." 8 56
 		# return
-		${3}
-	#fi
+		$2
+	fi
 }
 
 
@@ -256,25 +267,16 @@ function install_pip_from_list() {
 	echo_message title "Starting installation of ${1}..."
 	# Variables
 	LIST=$(dirname "$0")'/data/'${2}'.list'
-	# Draw window
 	# Install loop
-		while IFS= read -r PACKAGE
-		do
-			# If package is not installed
-			if [[ $(check_pip_package_installed $PACKAGE) != 0 ]]; then
-				# Install package
-				echo_message warning "Package '$PACKAGE' is not installed. Installing..."
-				# Admin privileges
-				install_pip_package "$(echo $PACKAGE | cut -d' ' -f1)" "$PACKAGE"
-				# Check if failed
-				if [[ $? != 0 ]]; then
-					echo_message error "Error installing '$PACKAGE'."
-				fi
-		else
-				# Show already installed message
-			echo_message info "Package '$PACKAGE' is installed."
+	while IFS= read -r PACKAGE
+	do
+		install_pip_package "$PACKAGE" 
+		
+		# Check if failed
+		if [[ $? != 0 ]]; then
+			echo_message error "Error installing '$PACKAGE'."
 		fi
-		done < "$LIST"
-		${3}
+	done < "$LIST"
+	${3}
 }
 
