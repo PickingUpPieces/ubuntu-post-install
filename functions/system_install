@@ -4,10 +4,10 @@
 
 function system_install {
 #	echo_message info "system install"
-#	install_all_utils
-#	install_thirdparty
+	install_all_utils
+	install_thirdparty
 	system_settings
-#	system_update
-#	system_cleanup
+	system_update
+	system_cleanup
 #	reboot
 }
