@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function install_dropbox {
+	# echo_message info "Installing dropbox..."
+	
+	# Activate autostart
+	dropbox autostart y
+	
+	# Configuring dropbox
+	dropbox start -i
+}

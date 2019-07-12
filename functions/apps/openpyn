@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_openpyn() {
+function install_openpyn {
 	# check if openpyn already installed
 	echo_message info "Installing openpyn..."
 	if [[ $(check_pip3_package_installed "openpyn") != 0 ]];

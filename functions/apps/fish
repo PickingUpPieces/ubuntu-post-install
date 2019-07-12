@@ -1,0 +1,37 @@
+#!/bin/bash
+
+function install_fish {
+	echo_message info "Installing fish..."	
+		
+	add_launchpad_ppa "fish" "fish-shell/release-3"
+	superuser_do "apt update"
+	superuser_do "apt install fish"
+	
+	# Set fish as standart shell
+	chsh -s /usr/bin/fish
+	
+	# Add to /etc/shells
+	if [[ $(cat /etc/shells | grep "fish" &> /dev/null; echo $?) != 0 ]]; then
+		$(echo /usr/bin/fish | sudo tee -a /etc/shells)
+	fi
+
+	# Finished
+        echo_message success "Installation of package fish is complete."
+
+	# Setup fish
+	echo_message info "Setting up fish..."
+
+	
+	# Package manager fisher https://github.com/jorgebucaran/fisher
+	curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+	
+	# Package-dependency: https://github.com/matchai/spacefish (shell prompt)
+	install_package "Font powerline" "fonts-powerline"
+
+	# Copy fish and fisher configs
+	cp ../../data/configs/config.fish ~/.config/fish/
+	cp ../../data/configs/fishfile ~/.config/fish/
+
+	echo_message success "Fish setup finished"
+}
+

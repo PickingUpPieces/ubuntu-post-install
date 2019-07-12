@@ -1,11 +1,13 @@
 curl
 software-properties-common
 whiptail
-dmks
 feh
 zip
 wget
 unzip
 python3-setuptools
 python3-pip
+python-pip
 snap
+libcanberra-gtk-module
+libcanberra-gtk3-module
