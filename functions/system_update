@@ -27,9 +27,6 @@ function update_system {
 
 # Check for snap updates
 function update_snap_apps {
-	# check if flatpak is installed
-	check_package "snapd" system_update
-	# continue
 	echo_message info "Updating installed snap packages..."
 	superuser_do "snap refresh"
 	if [ $? = 0 ]; then
@@ -43,8 +40,6 @@ function update_snap_apps {
 
 # Check for flatpak updates
 function update_flatpak_apps {
-	# check if flatpak is installed
-	check_package "flatpak" system_update
 	# continue
 	echo_message info "Updating installed flatpak packages..."
 	flatpak update

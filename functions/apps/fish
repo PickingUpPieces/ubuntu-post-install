@@ -29,8 +29,8 @@ function install_fish {
 	install_package "Font powerline" "fonts-powerline"
 
 	# Copy fish and fisher configs
-	cp ../../data/configs/config.fish ~/.config/fish/
-	cp ../../data/configs/fishfile ~/.config/fish/
+	cp data/configs/config.fish ~/.config/fish/
+	cp data/configs/fishfile ~/.config/fish/
 
 	echo_message success "Fish setup finished"
 }
