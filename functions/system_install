@@ -4,6 +4,7 @@
 
 function system_install {
 #	echo_message info "system install"
+	setup_folders
 	install_all_utils
 	install_thirdparty
 	system_settings

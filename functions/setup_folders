@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function setup_folders {
+	rm -rf $HOME/Public
+	rm -rf $HOME/Music
+	rm -rf $HOME/Desktop
+}

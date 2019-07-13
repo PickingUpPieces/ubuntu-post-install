@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function install_alacritty {
+	echo_message info "Installing alacritty (terminal)..." 
+
+	add_launchpad_ppa "alacritty" "mmstick76/alacritty"
+	install_package "alacritty" "alacritty"
+
+        echo_message success "Installation of package alacritty is complete."
+
+	# Copying settings
+	cp $(dirname $0)/data/configs/alacritty.yml $HOME/.config/alacritty/
+
+}
