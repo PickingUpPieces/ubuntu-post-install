@@ -28,6 +28,7 @@ clear
 # Title of script set
 TITLE="Ubuntu Post-Install Script"
 
+
 # Main
 function main {
 	echo_message header "Starting 'main' function"
