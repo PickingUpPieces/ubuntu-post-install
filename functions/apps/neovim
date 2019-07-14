@@ -3,7 +3,12 @@
 function install_neovim {
 
 	echo_message info "Installing NeoVim..."	
-		
+
+	if [ $(check_package_installed neovim) == 0 ]; then
+		return	
+	fi
+
+
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable"
 	superuser_do "apt update"
 	superuser_do "apt install neovim"

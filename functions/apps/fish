@@ -2,7 +2,11 @@
 
 function install_fish {
 	echo_message info "Installing fish..."	
-		
+	
+	if [ $(check_package_installed fish) == 0 ]; then
+		return	
+	fi
+
 	add_launchpad_ppa "fish" "fish-shell/release-3"
 	superuser_do "apt update"
 	superuser_do "apt install fish"
@@ -35,12 +39,12 @@ function install_fish {
 	cp $(dirname $0)/data/configs/config.fish $HOME/.config/fish/
 
 	# Install fisher plugins 
-	fish -c fisher add franciscolourenco/done
-	fish -c fisher add joseluisq/gitnow@2.1.1
-	fish -c fisher add decors/fish-colored-man
+	fish -c "fisher add franciscolourenco/done"
+	fish -c "fisher add joseluisq/gitnow@2.1.1"
+	fish -c "fisher add decors/fish-colored-man"
 
 	# Add bobthefish to omf
-	fish -c omf install bobthefish
+	fish -c "omf install bobthefish"
 
 
 	echo_message success "Fish setup finished"

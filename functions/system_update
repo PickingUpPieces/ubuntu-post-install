@@ -55,7 +55,7 @@ function update_flatpak_apps {
 # Update fish and plugins
 function update_fish {
 	fish -c fisher
-	fish -c omf update
+	fish -c "omf update"
 }
 
 # Update vim plugins

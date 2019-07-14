@@ -10,5 +10,5 @@ function system_install {
 	system_settings
 	system_update
 	system_cleanup
-	reboot
+#	reboot
 }
