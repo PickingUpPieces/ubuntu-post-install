@@ -22,4 +22,5 @@ function import_functions {
 function system_settings {
 	import_functions
 	set_wallpaper
+	stop_iio-sensor
 }
