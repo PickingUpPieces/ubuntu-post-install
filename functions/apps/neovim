@@ -17,4 +17,8 @@ function install_neovim {
 
 	cp $(dirname $0)/data/configs/init.vim $HOME/.config/nvim
 	mkdir $HOME/.config/nvim/plugged
+	
+	vim +PlugInstall +qall > /dev/null
+
+	echo_message success "NeoVim setup finished"
 }

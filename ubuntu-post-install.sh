@@ -42,9 +42,6 @@ function main {
 		'system_install'	'Setup new system' \
 		'install_all'		'Install all packages' \
 		'system_update'         'Perform system updates' \
-		'install_codecs'        'Install multimedia codecs' \
-		'setup_dotfiles'        'Configure dotfiles' \
-		'system_configure'      'Configure system' \
 		'system_cleanup'        'Cleanup the system' \
 		3>&1 1>&2 2>&3)
 	# check exit status

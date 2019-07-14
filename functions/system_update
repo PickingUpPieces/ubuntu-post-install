@@ -52,10 +52,24 @@ function update_flatpak_apps {
 	fi
 }
 
+# Update fish and plugins
+function update_fish {
+	fish -c fisher
+	fish -c omf update
+}
+
+# Update vim plugins
+function update_vim {
+	vim +PlugUpgrade +qall > /dev/null 
+	vim +PlugUpdate +qall > /dev/null 
+}
+
 # Perform system updates
 function system_update {
 	# install
 	echo_message title "Starting system updates..."
 	update_system
 	update_snap_apps
+	update_fish 
+	update_vim
 }

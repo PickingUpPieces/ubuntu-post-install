@@ -31,12 +31,17 @@ function install_fish {
 	# Package-dependency: https://github.com/matchai/spacefish (shell prompt)
 	install_package "Font powerline" "fonts-powerline"
 
-	# Copy fish and fisher configs
+	# Copy fish config
 	cp $(dirname $0)/data/configs/config.fish $HOME/.config/fish/
-	cp $(dirname $0)/data/configs/fishfile $HOME/.config/fish/
+
+	# Install fisher plugins 
+	fish -c fisher add franciscolourenco/done
+	fish -c fisher add joseluisq/gitnow@2.1.1
+	fish -c fisher add decors/fish-colored-man
 
 	# Add bobthefish to omf
-	echo "bobthefish" > $HOME/.config/omf/theme
+	fish -c omf install bobthefish
+
 
 	echo_message success "Fish setup finished"
 }

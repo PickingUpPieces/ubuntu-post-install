@@ -1,4 +1,5 @@
 " basics
+syntax enable
 set showmatch           " Show matching brackets.
 set number              " Show the line numbers on the left side.
 set incsearch
@@ -28,9 +29,6 @@ Plug 'tpope/vim-surround'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Polygot - Syntax correction
-Plug 'sheerun/vim-polyglot'
-
 " Autosave
 Plug '907th/vim-auto-save'
 
@@ -39,6 +37,9 @@ Plug 'iCyMind/NeoSolarized'
 
 " Git dif
 Plug 'airblade/vim-gitgutter'
+
+" Check syntax
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -64,17 +65,17 @@ let g:airline_solarized_bg='dark'
 " deoplete
 let g:deoplete#enable_at_startup = 1
 " use tab to forward cycle
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " use tab to backward cycle
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 " Close the documentation window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " solarized
-syntax enable
-set background=dark
-colorscheme NeoSolarized
+silent! colorscheme NeoSolarized
 
 
 " Autosave
