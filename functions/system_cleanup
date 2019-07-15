@@ -6,26 +6,8 @@
 # Remove pre-installed apps
 function purge_unused {
 	NAME="Unused Pre-installed Applications"
-	echo_message title "Removing ${NAME,,}..."
 	# Check list
-	LIST=$(dirname "$0")'/data/purge.list'
-	# Remove loop
-		for PACKAGE in $(cat $LIST); do
-			# If package is not installed
-			if [ $(check_package_installed $PACKAGE) != 0 ]; then
-				# Show already removed message
-				echo_message info "Package '$PACKAGE' already removed."
-			else
-				# Remove package
-				echo_message info "'$PACKAGE' is installed. Removing..."
-				# Admin privileges
-				superuser_do "apt remove -y $PACKAGE"
-				# Finished
-				echo_message success "'$PACKAGE' removal is complete."
-			fi
-		done
-		# Finished
-		echo_message success "Removal of ${NAME,,} complete."
+	remove_from_list "Purge pre-installed applications" "purge"
 }
 # Remove pre-installed apps
 function purge_snaps {
@@ -65,6 +47,11 @@ function remove_orphans {
 # Remove Leftover Config files
 function remove_leftovers {
 	echo_message info "Removing leftover configuration files..."
+	
+	if [ -z $(COLUMNS=200 dpkg -l | grep '^rc' | tr -s ' ' | cut -d ' ' -f 2) ]; then
+		echo_message success "No leftover configuration files"
+		return
+	fi
 	# Admin privileges
 	superuser_do "dpkg --purge $(COLUMNS=200 dpkg -l | grep '^rc' | tr -s ' ' | cut -d ' ' -f 2)"
 	# Done

@@ -4,6 +4,11 @@ function stop_iio-sensor {
 	# Stops weird screen rotation ubuntu
 
 	echo_message info "Disable iio-sensor.."
+	
+	if [ $(check_package_installed iio-sensor-proxy) != 0 ]; then
+		return
+	fi
+
 	superuser_do "systemctl stop iio-sensor-proxy.service"
 	superuser_do "systemctl disable iio-sensor-proxy.service"
 

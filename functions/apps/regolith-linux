@@ -3,7 +3,13 @@
 function install_regolith-linux {
 	echo_message info "Installing regolith-linux..."	
 	
+	if [ $(check_package_installed regolith-desktop) == 0 ]; then
+		return
+	fi
+
 	add_launchpad_ppa "regolith-linux" "kgilmer/regolith-stable"
+
+
 	superuser_do "apt install regolith-desktop"
 
 	# Finished

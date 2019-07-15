@@ -1,26 +1,8 @@
 #!/bin/bash
 
-# Import Functions
-function import_functions {
-        DIR="functions/settings"
-        # iterate through the files in the 'settings' folder
-        for FUNCTION in $(dirname "$0")/$DIR/*; do
-                # skip directories
-                if [[ -d $FUNCTION ]]; then
-                        continue
-                # exclude markdown readmes
-                elif [[ $FUNCTION == *.md ]]; then
-                        continue
-                elif [[ -f $FUNCTION ]]; then
-                        # source the function file
-                        . $FUNCTION
-                fi
-        done
-}
-
 
 function system_settings {
-	import_functions
+	import_functions "functions/settings"
 	set_wallpaper
 	stop_iio-sensor
 }

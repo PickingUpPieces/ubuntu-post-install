@@ -67,7 +67,7 @@ function add_flatpak_repo() {
 # ${2} = launchpad-user/ppa-name
 
 function add_launchpad_ppa() {
-	echo_message header "Starting 'add_launchpad_ppa' function"
+#	echo_message header "Starting 'add_launchpad_ppa' function"
 	# Check if PPA already added
 	if ! grep -q "^deb .*${2}" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
 		# Add repository

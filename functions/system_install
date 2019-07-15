@@ -1,10 +1,25 @@
 #!/bin/bash
 
 
+function remove_standard_folders {
+	rm -rf $HOME/Public
+	rm -rf $HOME/Music
+	rm -rf $HOME/Desktop
+	rm -rf $HOME/Templates
+	rm -rf $HOME/Videos
+	rm -rf $HOME/examples.desktop
+}
+
+
+function remove_pre_installed { 
+	remove_from_list "Remove programs which are going to be setup" "pre_system_install"	
+}
+
 
 function system_install {
 	echo_message info "system install"
-	setup_folders
+	remove_standard_folders 
+#	remove_pre_installed
 	install_all_utils
 	install_thirdparty
 	system_settings

@@ -1,5 +1,4 @@
 ffmpeg
-neovim
 openssh-server
 powertop
 ssh
@@ -15,3 +14,5 @@ firefox
 chromium-browser
 texstudio
 nautilus-dropbox
+gufw
+

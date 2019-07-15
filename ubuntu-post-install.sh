@@ -62,8 +62,11 @@ function quit {
 }
 
 # Import Functions
+# $1 = directory path
+
 function import_functions {
-	DIR="functions"
+	DIR=$1
+	
 	# iterate through the files in the 'functions' folder
 	for FUNCTION in $(dirname "$0")/$DIR/*; do
 		# skip directories
@@ -80,7 +83,8 @@ function import_functions {
 }
 
 # Import main functions
-import_functions
+import_functions "functions/script"
+import_functions "functions"
 # Welcome message
 echo_message welcome "$TITLE"
 # Run system checks

@@ -1,0 +1,43 @@
+#!/bin/bash 
+
+# $1 "package name"
+function remove_package {
+	PACKAGE=$1
+	# If package is installed
+	if [ $(check_package_installed $PACKAGE) == 0 ]; then
+		# Remove package
+		echo_message warning "Package '$PACKAGE' is installed. Removing..."
+		# Admin privileges
+		superuser_do "apt remove -y $PACKAGE"
+		# Check if failed
+		if [[ $? != 0 ]]; then
+			echo_message error "Error removing '$PACKAGE'."
+		fi
+	else
+		# Show not installed message
+		echo_message info "Package '$PACKAGE' is not installed."
+	fi
+	
+}
+
+# remove from list function
+#
+# ${1} = Name
+# ${2} = list-name
+# ${3} = return_function
+
+function remove_from_list() {
+	echo_message title "Starting removal of ${1}..."
+	# Variables
+	LIST=$(dirname "$0")'/data/'${2}'.list'
+
+	# Remove loop
+	for PACKAGE in $(cat $LIST); do
+		remove_package $PACKAGE	
+	done
+	
+	# Return function
+	${3}
+}
+
+
