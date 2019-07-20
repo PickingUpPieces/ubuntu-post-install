@@ -60,16 +60,36 @@ function update_fish {
 
 # Update vim plugins
 function update_vim {
-	vim +PlugUpgrade +qall > /dev/null 
-	vim +PlugUpdate +qall > /dev/null 
+vim +SPUpdate > /dev/null
+#	vim +PlugUpgrade +qall > /dev/null 
+#	vim +PlugUpdate +qall > /dev/null 
 }
+
+
+function update_pip {
+	echo_message title "Starting update of ${1}..."
+	# Variables
+	LIST=$(dirname "$0")'/data/'${2}'.list'
+	# Install loop
+	while IFS= read -r PACKAGE
+	do
+	  pip3 install $PACKAGE --upgrade
+		# Check if failed
+		if [[ $? != 0 ]]; then
+			echo_message error "Error update '$PACKAGE'."
+		fi
+	done < "$LIST"
+	${3}
+}
+
+
 
 # Perform system updates
 function system_update {
-	# install
 	echo_message title "Starting system updates..."
 	update_system
 	update_snap_apps
 	update_fish 
 	update_vim
+  update_pip "pip packages" "pip-upgradeable"
 }

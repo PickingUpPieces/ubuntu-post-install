@@ -83,8 +83,8 @@ function import_functions {
 }
 
 # Import main functions
-import_functions "functions/script"
 import_functions "functions"
+import_functions "functions/script"
 # Welcome message
 echo_message welcome "$TITLE"
 # Run system checks

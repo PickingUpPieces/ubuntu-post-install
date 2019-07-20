@@ -219,13 +219,13 @@ function install_pip_package() {
 		# Install
 			echo_message info "Installing package '$1'..."
 			# Admin privileges
-			pip install $1
+			pip3 install $1
 			
 			# Finished
 			if [ $? != 0 ]; then
 				echo_message error "Error installing '$PACKAGE' with pip."
 				# Try pip3
-				pip3 install $1
+				pip install $1
 
 				if [ $? != 0]; then
 					echo_message error "Error installing '$PACKAGE' with pip3."

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+function install_i3 {
+  # Write own config options in i3config
+  cat $(dirname $0)/data/configs/i3config.conf >> $HOME/.config/i3-regolith/config
+  
+
+}

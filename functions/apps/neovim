@@ -10,21 +10,28 @@ function install_neovim {
 
 
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable"
-	superuser_do "apt update"
 	superuser_do "apt install neovim"
 	
 	
 	
 	echo_message info "Setting up NeoVim..."
+  
+  # SpaceVim Setup
+  
+  curl -sLf https://spacevim.org/install.sh | bash
 
+  cp $(dirname $0)/data/configs/init.toml ~/.SpaceVim.d/init.toml
+  vim +SPUpdate > /dev/null
 	# Installing plugin manager vim_plug
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-	mkdir $HOME/.config/nvim
-	cp $(dirname $0)/data/configs/init.vim $HOME/.config/nvim
-	mkdir $HOME/.config/nvim/plugged
+	#mkdir $HOME/.config/nvim
+	#cp $(dirname $0)/data/configs/init.vim $HOME/.config/nvim
+	#mkdir $HOME/.config/nvim/plugged
 	
-	vim +PlugInstall +qall > /dev/null
+	#vim +PlugInstall +qall > /dev/null
+
+
 
 	echo_message success "NeoVim setup finished"
 }
