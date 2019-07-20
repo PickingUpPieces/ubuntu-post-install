@@ -7,7 +7,7 @@
 # ${3} = return_function
 
 function install_package() {
-	echo_message header "Starting 'install_package' function..."
+#	echo_message header "Starting 'install_package' function..."
 	# If package is not installed
 	if [ $(check_package_installed ${2}) != 0 ]; then
 		echo_message info "${2} is not installed. Installing..."
@@ -18,12 +18,14 @@ function install_package() {
 		echo_message success "Installation of package '${2}' is complete."
 	
 		# return
+    return 0
 		${3}
 		
 	else
 		# Already installed
 		echo_message info "Package '${2}' is already installed."
 		# return
+    return 1
 		${3}
 	fi
 }

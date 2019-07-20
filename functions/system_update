@@ -60,7 +60,8 @@ function update_fish {
 
 # Update vim plugins
 function update_vim {
-vim +SPUpdate > /dev/null
+  echo "dummy"
+# vim +SPUpdate > /dev/null
 #	vim +PlugUpgrade +qall > /dev/null 
 #	vim +PlugUpdate +qall > /dev/null 
 }
@@ -90,6 +91,6 @@ function system_update {
 	update_system
 	update_snap_apps
 	update_fish 
-	update_vim
+#	update_vim
   update_pip "pip packages" "pip-upgradeable"
 }
