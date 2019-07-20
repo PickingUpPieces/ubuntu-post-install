@@ -8,8 +8,8 @@ function install_fish {
 	fi
 
 	add_launchpad_ppa "fish" "fish-shell/release-3"
-	superuser_do "apt update"
-	superuser_do "apt install fish"
+	
+	install_package "fish" "fish"
 	
 	# Set fish as standart shell
 	chsh -s /usr/bin/fish

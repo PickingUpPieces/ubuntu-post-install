@@ -8,8 +8,8 @@ function install_openpyn {
 		superuser_do "python3 -m pip install --upgrade openpyn"
 		
 		# Setup
-		echo_message info "Setting up openpyn..."
-		superuser_do "openpyn --init"
+		#echo_message info "Setting up openpyn..."
+		#superuser_do "openpyn --init"
 	else
 		echo_message info "Package openpyn is already installed."
 	fi

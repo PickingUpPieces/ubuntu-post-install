@@ -9,8 +9,7 @@ function install_regolith-linux {
 
 	add_launchpad_ppa "regolith-linux" "kgilmer/regolith-stable"
 
-
-	superuser_do "apt install regolith-desktop"
+	install_package "regolith linux" "regolith-desktop"
 
 	# Finished
         echo_message success "Installation of package regolith-linux is complete."

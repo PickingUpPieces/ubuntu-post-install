@@ -12,6 +12,6 @@ function stop_iio-sensor {
 	superuser_do "systemctl stop iio-sensor-proxy.service"
 	superuser_do "systemctl disable iio-sensor-proxy.service"
 
-	superuser_do "apt remove iio-sensor-proxy"
+	superuser_do "apt remove -y iio-sensor-proxy"
 
 }
