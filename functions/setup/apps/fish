@@ -7,6 +7,9 @@ function setup_fish {
 	# Set fish as standart shell
 	chsh -s /usr/bin/fish
 	
+  # Set fish as standart shell for root as well
+  superuser_do "chsh -s /usr/bin/fish"
+
 	# Add to /etc/shells
 	if [[ $(cat /etc/shells | grep "fish" &> /dev/null; echo $?) != 0 ]]; then
 		$(echo /usr/bin/fish | sudo tee -a /etc/shells)
