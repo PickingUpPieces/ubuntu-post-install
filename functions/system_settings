@@ -1,9 +1,0 @@
-#!/bin/bash
-
-
-function system_settings {
-	import_functions "functions/settings"
-	set_wallpaper
-	stop_iio-sensor
-  setup_scripts
-}

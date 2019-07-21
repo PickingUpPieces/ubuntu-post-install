@@ -1,8 +1,9 @@
 #!/bin/bash
 
-function set_wallpaper {
+function setup_wallpapers {
 	WALLPAPER="forest-3840x2160-sunset-artwork-4k-20035.jpg"
 	cp $(dirname $0)/data/wallpapers/* $HOME/Pictures/
+
 	gsettings set org.gnome.desktop.background picture-uri "file://$HOME/Pictures/$WALLPAPER"
 	gsettings set org.gnome.desktop.screensaver picture-uri "file://$HOME/Pictures/$WALLPAPER"
 }

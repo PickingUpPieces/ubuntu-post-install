@@ -1,19 +1,7 @@
 #!/bin/bash
 
-function install_neovim {
 
-	echo_message info "Installing NeoVim..."	
-
-	if [ $(check_package_installed neovim) == 0 ]; then
-		return	
-	fi
-
-
-	add_launchpad_ppa "NeoVim" "neovim-ppa/stable"
-
-	install_package "neovim" "neovim"	
-	
-	
+function setup_neovim {
 	echo_message info "Setting up NeoVim..."
   
   # SpaceVim Setup
@@ -21,7 +9,6 @@ function install_neovim {
   curl -sLf https://spacevim.org/install.sh | bash
 
   cp $(dirname $0)/data/configs/init.toml ~/.SpaceVim/init.toml
-  vim +SPUpdate > /dev/null
 	# Installing plugin manager vim_plug
 	#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
@@ -32,6 +19,6 @@ function install_neovim {
 	#vim +PlugInstall +qall > /dev/null
 
 
+	echo_message success "Finished setting up NeoVim."
 
-	echo_message success "NeoVim setup finished"
 }

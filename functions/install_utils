@@ -25,14 +25,42 @@ function install_codecs {
 	install_package "multimedia codecs" "ubuntu-restricted-extras" main
 }
 
+function install_external-repositories {
+	add_launchpad_ppa "alacritty" "mmstick76/alacritty" "alacritty"
+	add_launchpad_ppa "cool-retro-terminal " "vantuz/cool-retro-term" "cool-retro-terminal" 
+	add_launchpad_ppa "fish" "fish-shell/release-3" "fish"
+	add_launchpad_ppa "NeoVim" "neovim-ppa/stable" "neovim"
+	add_launchpad_ppa "regolith-linux" "kgilmer/regolith-stable" "regolith-desktop"
+  add_launchpad_ppa "firefox" "ubuntu-mozilla-security/ppa" "firefox"
+}
+
+
+function install_special {
+	DIR="functions/install"
+
+	echo_message title "Starting installation of ${NAME}..."
+	
+	# Import thirdparty install functions
+	import_functions $DIR
+
+	for APP in $(dirname "$0")/$DIR/*; do
+		
+    APP_NAME=$(echo $APP | cut -d'/' -f4)
+		install_$APP_NAME
+		
+	done
+}
+
+
 function install_all_utils {
 	install_from_list "Install dependencies" "dependencies" 
 	install_pip_from_list "pip dependencies" "dependencies-pip" 
   install_pip_from_list "pip tools" "pip-tools"
   install_from_list "preferred utilities" "utils" 
 	install_from_list "preferred development tools" "dev-tools" 
-        install_from_list "VPN" "vpn" 
-	install_snap_from_list "snap programs" "utils-snap" 
-
+  install_from_list "VPN" "vpn" 
+#	install_snap_from_list "snap programs" "utils-snap" 
+  install_external-repositories
+  install_special 
 }
 

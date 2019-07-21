@@ -3,8 +3,9 @@
 function setup_scripts {
 
     echo_message info "Copying shell scripts..."
+  
     mkdir $HOME/.config/scripts
-
     cp $(dirname $0)/data/scripts/* $HOME/.config/scripts
 
+    superuser_do "cp $(dirname $0)/data/scripts/i3blocks/* /usr/share/i3blocks/*"
 }

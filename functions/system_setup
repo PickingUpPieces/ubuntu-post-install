@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+
+# Setup all Applications
+function setup_apps {
+	DIR="functions/setup/apps"
+
+	echo_message title "Starting setting up apps..."
+	
+	# Import thirdparty install functions
+	import_functions $DIR
+  
+	for APP in $(dirname $0)/$DIR/*; do
+		APP_NAME=$(echo $APP | cut -d'/' -f5)
+		setup_$APP_NAME
+	done
+}
+
+# Setup system settings
+function setup_settings {
+	DIR="functions/setup/settings"
+
+	echo_message title "Starting setting up system settings..."
+	
+	# Import thirdparty install functions
+	import_functions $DIR
+
+	for APP in $(dirname "$0")/$DIR/*; do
+		APP_NAME=$(echo $APP | cut -d'/' -f5)
+		setup_$APP_NAME
+		
+	done
+}
+
+
+function system_setup {
+  setup_apps
+  setup_settings
+}

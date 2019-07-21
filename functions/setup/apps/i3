@@ -1,10 +1,12 @@
 #!/bin/bash
 
 
-function install_i3 {
+function setup_i3 {
+	echo_message info "Setting up i3..."
+
   # Write own config options in i3config
-  
 	echo_message info "Adding i3 config..."	
+  
   cat $HOME/.config/i3-regolith/config | grep 'bitwarden' &> /dev/null
   if [ $? = 0 ]; then
     echo_message info "i3 config already added"
@@ -13,6 +15,5 @@ function install_i3 {
   
   cat $(dirname $0)/data/configs/i3config.conf >> $HOME/.config/i3-regolith/config
   
-
+	echo_message success "Finished setting up i3."
 }
-

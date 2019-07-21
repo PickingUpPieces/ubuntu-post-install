@@ -15,7 +15,9 @@ function install_package() {
 		superuser_do "apt install -y ${2}"
 	
 		# Finished
-		echo_message success "Installation of package '${2}' is complete."
+    if [ $? == 0 ]; then
+      echo_message success "Installation of package '$2' is complete."
+    fi
 	
 		# return
     return 0

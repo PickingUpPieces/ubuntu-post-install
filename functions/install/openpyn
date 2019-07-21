@@ -1,15 +1,16 @@
 #!/bin/bash
 
+
 function install_openpyn {
-	# check if openpyn already installed
 	echo_message info "Installing openpyn..."
+	
+  # check if openpyn already installed
 	if [[ $(check_pip3_package_installed "openpyn") != 0 ]];
 	then
 		superuser_do "python3 -m pip install --upgrade openpyn"
-		
-		# Setup
-		#echo_message info "Setting up openpyn..."
-		#superuser_do "openpyn --init"
+    
+    echo_message success "Installation of 'openpyn' is complete."
+    
 	else
 		echo_message info "Package openpyn is already installed."
 	fi

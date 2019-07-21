@@ -1,7 +1,9 @@
 #!/bin/bash
 
 function install_driver_display-link {
+	echo_message info "Installing display-link_driver..."
   
   superuser_do '/bin/bash '$(dirname $0)'/data/drivers/displaylink-driver-5.2.14.run'
   
+  echo_message success "Installation of 'display-link_driver' is complete."
 } 

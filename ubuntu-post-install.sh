@@ -22,11 +22,10 @@
 # this program; if not, see <https://www.gnu.org/licenses/gpl-3.0.txt>
 
 # tab width
-tabs 4
 clear
-
+  
 # Title of script set
-TITLE="Ubuntu Post-Install Script"
+TITLE="Ubuntu System Setup Script"
 
 
 # Main
@@ -39,10 +38,10 @@ function main {
 		--menu "\nWhat would you like to do?" \
 		--cancel-button "Quit" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
-		'system_install'	'Setup new system' \
-		'install_all'		'Install all packages' \
-		'system_update'         'Perform system updates' \
-		'system_cleanup'        'Cleanup the system' \
+    'system_install'	    '(De)Install everything (un)important' \
+		'system_setup'		    'Setup system and apps' \
+		'system_update'       'Perform system updates' \
+		'system_cleanup'      'Cleanup the system' \
 		3>&1 1>&2 2>&3)
 	# check exit status
 	if [ $? = 0 ]; then
@@ -54,6 +53,7 @@ function main {
 	fi
 }
 
+
 # Quit
 function quit {
 	echo_message header "Starting 'quit' function"
@@ -61,9 +61,10 @@ function quit {
 	exit 99
 }
 
+
 # Import Functions
 # $1 = directory path
-
+#
 function import_functions {
 	DIR=$1
 	
@@ -81,6 +82,7 @@ function import_functions {
 		fi
 	done
 }
+
 
 # Import main functions
 import_functions "functions"

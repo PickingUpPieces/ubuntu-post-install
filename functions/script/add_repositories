@@ -63,23 +63,45 @@ function add_flatpak_repo() {
 
 # Add Launchpad PPA
 #
-# ${1} = Name 
-# ${2} = launchpad-user/ppa-name
+# $1 = Name 
+# $2 = launchpad-user/ppa-name
+# $3 = package name
 
 function add_launchpad_ppa() {
 #	echo_message header "Starting 'add_launchpad_ppa' function"
 	# Check if PPA already added
-	if ! grep -q "^deb .*${2}" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+	if ! grep -q "^deb .*$2" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
 		# Add repository
-		echo_message info "Adding ${1} PPA repository..."
-		superuser_do "add-apt-repository -y ppa:${2}"
+		echo_message info "Adding $1 PPA repository..."
+		superuser_do "add-apt-repository -y ppa:$2"
 	
 		# Update repository information
 		echo_message info "Refreshing repository information..."
 		superuser_do "apt update -y -qq"
 		# Done
-		echo_message success "Repository added."
+		if [ $? = 0]; then
+      echo_message success "Repository added."
+	    echo_message info "Installing '$3'..."	
+
+
+	    if [ $(check_package_installed $3 ) != 0 ]; then
+		    echo_message info "$3 is already installed but not from PPA. Removing other package..."
+		 
+        superuser_do "apt remove -y $3"
+      fi
+
+        # Install
+		    install_package "$1" "$3" 
+	
+		    # return success
+        return 0
+      
+    else
+		  echo_message error "Error installing '$3'."
+      return 1
+    fi
 	else 
-		echo_message info "${1} PPA repository already added."
+		echo_message info "$1 PPA repository already added."
+    return 1
 	fi
 }

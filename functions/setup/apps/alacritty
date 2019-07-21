@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+function setup_alacritty {
+	echo_message info "Setting up alacritty..."
+
+	# Copying settings
+  mkdir $HOME/.config/alacritty
+  cp $(dirname $0)/data/configs/alacritty.yml $HOME/.config/alacritty/
+  
+  echo_message success "Finished setting up alacritty."
+}

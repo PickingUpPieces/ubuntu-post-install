@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-function stop_iio-sensor {
+function setup_disable-iio-sensor {
 	# Stops weird screen rotation ubuntu
 
 	echo_message info "Disable iio-sensor.."
