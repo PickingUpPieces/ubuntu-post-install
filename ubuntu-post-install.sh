@@ -38,8 +38,9 @@ function main {
 		--menu "\nWhat would you like to do?" \
 		--cancel-button "Quit" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
-    'system_install'	    '(De)Install everything (un)important' \
-		'system_setup'		    'Setup system and apps' \
+                'system_install'	    '(De)Install everything (un)important' \
+                'install_snap_utils'  'Install all snap apps' \
+                'system_setup'		    'Setup system and apps' \
 		'system_update'       'Perform system updates' \
 		'system_cleanup'      'Cleanup the system' \
 		3>&1 1>&2 2>&3)

@@ -3,7 +3,6 @@
 
 function setup_dropbox {
 	# Configuring dropbox
-	echo_message info "Setting up dropbox..."
 	
   # Activate autostart
 	dropbox autostart y
@@ -11,5 +10,4 @@ function setup_dropbox {
   # Start setup
   dropbox start -i
   
-  echo_message success "Finished setting up dropbox."
 }

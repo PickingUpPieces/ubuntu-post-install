@@ -2,7 +2,6 @@
 
 
 function setup_fish {
-	echo_message info "Setting up fish..."
 
 	# Set fish as standart shell
 	chsh -s /usr/bin/fish
@@ -20,7 +19,7 @@ function setup_fish {
 	curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 	# Package manager oh my fish
-	curl -L https://get.oh-my.fish | fish
+  curl -L https://get.oh-my.fish | fish
 
 	# Package-dependency: https://github.com/matchai/spacefish (shell prompt)
 	install_package "Font powerline" "fonts-powerline"
@@ -36,7 +35,5 @@ function setup_fish {
 	# Add bobthefish to omf
 	fish -c "omf install bobthefish"
 
-
-	echo_message success "Finished setting up fish."
 }
 

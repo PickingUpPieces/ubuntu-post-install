@@ -2,8 +2,5 @@
 
 
 function setup_openpyn {
-
-	echo_message info "Setting up openpyn..."
 	superuser_do "openpyn --init"
-  echo_message success "Finished setting up openpyn."
 }

@@ -79,7 +79,7 @@ function add_launchpad_ppa() {
 		echo_message info "Refreshing repository information..."
 		superuser_do "apt update -y -qq"
 		# Done
-		if [ $? = 0]; then
+		if [ $? = 0 ]; then
       echo_message success "Repository added."
 	    echo_message info "Installing '$3'..."	
 

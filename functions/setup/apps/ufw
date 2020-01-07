@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+function setup_ufw {
+  # Start it and add it to autostart
+  superuser_do "ufw enable"
+}

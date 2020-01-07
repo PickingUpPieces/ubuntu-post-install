@@ -12,7 +12,13 @@ function setup_apps {
   
 	for APP in $(dirname $0)/$DIR/*; do
 		APP_NAME=$(echo $APP | cut -d'/' -f5)
+
+	  echo_message info "Setting up '$APP_NAME'..."
+
 		setup_$APP_NAME
+
+	  echo_message success "Finished setting up '$APP_NAME'."
+
 	done
 }
 

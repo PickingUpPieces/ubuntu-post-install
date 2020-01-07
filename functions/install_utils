@@ -32,6 +32,8 @@ function install_external-repositories {
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable" "neovim"
 	add_launchpad_ppa "regolith-linux" "kgilmer/regolith-stable" "regolith-desktop"
   add_launchpad_ppa "firefox" "ubuntu-mozilla-security/ppa" "firefox"
+  add_launchpad_ppa "tlp" "linrunner/tlp" "tlp"
+  add_launchpad_ppa "neofetch" "dawidd0811/neofetch" "neofetch"
 }
 
 

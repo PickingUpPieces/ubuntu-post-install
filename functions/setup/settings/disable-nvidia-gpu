@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function setup_disable-nvidia-gpu {
+  # Select Intel GPU as prime GPU
+  superuser_do "prime-select intel"
+}

@@ -1,14 +1,8 @@
 #!/bin/bash
 
 
-function remove_pre_installed { 
-	remove_from_list "Remove programs which are going to be setup" "pre_system_install"	
-}
-
-
 function system_install {
 	echo_message info "system install"
-#	remove_pre_installed
 	system_cleanup
 	install_all_utils
 	system_cleanup
