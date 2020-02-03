@@ -2,7 +2,7 @@
 
 
 function setup_dropbox {
-	# Configuring dropbox
+  # Configuring dropbox
 	
   # Activate autostart
 	dropbox autostart y

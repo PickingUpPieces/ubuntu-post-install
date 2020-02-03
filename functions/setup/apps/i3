@@ -3,15 +3,17 @@
 
 function setup_i3 {
 
-  # Write own config options in i3config
+  	# Write own config options in i3config
 	echo_message info "Adding i3 config..."	
   
-  cat $HOME/.config/i3-regolith/config | grep 'bitwarden' &> /dev/null
-  if [ $? = 0 ]; then
-    echo_message info "i3 config already added"
-    return
-  fi
+	# When bitwarden is in the config, it is already ours
+	# TODO 
+  	cat $HOME/.config/i3-regolith/config | grep 'bitwarden' &> /dev/null
+  	if [ $? = 0 ]; then
+    		echo_message info "i3 config already added"
+    		return
+  	fi
   
-  cat $(dirname $0)/data/configs/i3config.conf >> $HOME/.config/i3-regolith/config
+  	cat $(dirname $0)/data/configs/i3config.conf >> $HOME/.config/i3-regolith/config
   
 }

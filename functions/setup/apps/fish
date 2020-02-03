@@ -6,8 +6,8 @@ function setup_fish {
 	# Set fish as standart shell
 	chsh -s /usr/bin/fish
 	
-  # Set fish as standart shell for root as well
-  superuser_do "chsh -s /usr/bin/fish"
+	# Set fish as standart shell for root as well
+  	superuser_do "chsh -s /usr/bin/fish"
 
 	# Add to /etc/shells
 	if [[ $(cat /etc/shells | grep "fish" &> /dev/null; echo $?) != 0 ]]; then
@@ -19,7 +19,7 @@ function setup_fish {
 	curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 	# Package manager oh my fish
-  curl -L https://get.oh-my.fish | fish
+  	curl -L https://get.oh-my.fish | fish
 
 	# Package-dependency: https://github.com/matchai/spacefish (shell prompt)
 	install_package "Font powerline" "fonts-powerline"
@@ -34,6 +34,8 @@ function setup_fish {
 
 	# Add bobthefish to omf
 	fish -c "omf install bobthefish"
+
+	# TODO setup bobthefish theme
 
 }
 
