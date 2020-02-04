@@ -14,9 +14,9 @@ function setup_fish {
 		$(echo /usr/bin/fish | sudo tee -a /etc/shells)
 	fi
 
-	
+	# fisher ist super langsam	
 	# Package manager fisher https://github.com/jorgebucaran/fisher
-	curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+#	curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
 	# Package manager oh my fish
   	curl -L https://get.oh-my.fish | fish
@@ -28,14 +28,13 @@ function setup_fish {
 	cp $(dirname $0)/data/configs/config.fish $HOME/.config/fish/
 
 	# Install fisher plugins 
-	fish -c "fisher add franciscolourenco/done"
-	fish -c "fisher add joseluisq/gitnow@2.1.1"
-	fish -c "fisher add decors/fish-colored-man"
+	#fish -c "fisher add franciscolourenco/done"
+	#fish -c "fisher add joseluisq/gitnow@2.1.1"
+	#fish -c "fisher add decors/fish-colored-man"
 
 	# Add bobthefish to omf
 	fish -c "omf install bobthefish"
-
-	# TODO setup bobthefish theme
+	fish -c "omf install sudope"
 
 }
 
