@@ -5,5 +5,5 @@ function system_install {
 	echo_message info "system install"
 	system_cleanup
 	install_all_utils
-	system_cleanup
+#	system_cleanup
 }
