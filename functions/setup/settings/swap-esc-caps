@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+function setup_swap-esc-caps {
+	# Stops weird screen rotation ubuntu
+
+	echo_message info "Swap ESC and CAPSLOCK.."
+	
+	superuser_do "setxkbmap -option caps:swapescape"
+
+}

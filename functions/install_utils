@@ -31,9 +31,9 @@ function install_external-repositories {
 	add_launchpad_ppa "fish" "fish-shell/release-3" "fish"
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable" "neovim"
 	add_launchpad_ppa "regolith-linux" "kgilmer/regolith-stable" "regolith-desktop"
-  add_launchpad_ppa "firefox" "ubuntu-mozilla-security/ppa" "firefox"
-  add_launchpad_ppa "tlp" "linrunner/tlp" "tlp"
-  add_launchpad_ppa "neofetch" "dawidd0811/neofetch" "neofetch"
+	add_launchpad_ppa "firefox" "ubuntu-mozilla-security/ppa" "firefox"
+  	add_launchpad_ppa "tlp" "linrunner/tlp" "tlp"
+  	add_launchpad_ppa "neofetch" "dawidd0811/neofetch" "neofetch"
 }
 
 
@@ -47,9 +47,9 @@ function install_special {
 
 	for APP in $(dirname "$0")/$DIR/*; do
 		
-    APP_NAME=$(echo $APP | cut -d'/' -f4)
+    		APP_NAME=$(echo $APP | cut -d'/' -f4)
 		install_$APP_NAME
-		
+	
 	done
 }
 
