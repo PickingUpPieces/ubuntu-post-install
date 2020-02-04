@@ -30,7 +30,7 @@ function install_external-repositories {
 	add_launchpad_ppa "cool-retro-terminal " "vantuz/cool-retro-term" "cool-retro-terminal" 
 	add_launchpad_ppa "fish" "fish-shell/release-3" "fish"
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable" "neovim"
-	add_launchpad_ppa "regolith-linux" "regolith-linux/stable" ""
+	add_launchpad_ppa "regolith-linux" "regolith-linux/stable" "regolith-desktop"
 	add_launchpad_ppa "firefox" "ubuntu-mozilla-security/ppa" "firefox"
   	add_launchpad_ppa "tlp" "linrunner/tlp" "tlp"
   	add_launchpad_ppa "neofetch" "dawidd0811/neofetch" "neofetch"
