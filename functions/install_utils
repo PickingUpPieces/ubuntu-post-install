@@ -26,7 +26,7 @@ function install_codecs {
 }
 
 function install_external-repositories {
-	add_launchpad_ppa "alacritty" "mmstick76/alacritty" "alacritty"
+#	add_launchpad_ppa "alacritty" "mmstick76/alacritty" "alacritty"
 	add_launchpad_ppa "cool-retro-terminal " "vantuz/cool-retro-term" "cool-retro-terminal" 
 	add_launchpad_ppa "fish" "fish-shell/release-3" "fish"
 	add_launchpad_ppa "NeoVim" "neovim-ppa/stable" "neovim"

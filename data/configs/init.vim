@@ -32,14 +32,18 @@ Plug 'vim-airline/vim-airline-themes'
 " Autosave
 Plug '907th/vim-auto-save'
 
-" Theme solarized
+" Themes
 Plug 'iCyMind/NeoSolarized'
+Plug 'arcticicestudio/nord-vim'
 
 " Git dif
 Plug 'airblade/vim-gitgutter'
 
 " Check syntax
 Plug 'w0rp/ale'
+
+" Latex 
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -58,8 +62,8 @@ let NERDTreeHijackNetrw = 0
 
 
 " Airline - Choose solarized dark theme
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme='base16_nord'
+" let g:airline_solarized_bg='dark'
 
 
 " deoplete
@@ -75,7 +79,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " solarized
-silent! colorscheme NeoSolarized
+silent! colorscheme nord
 
 
 " Autosave

@@ -2,7 +2,7 @@
 set -Ux EDITOR nvim
 
 # Solarized for bobthefish theme
-set -g theme_color_scheme solarized-dark
+set -g theme_color_scheme nord
 
 # Install fisher packages every start
 if not functions -q fisher
@@ -11,6 +11,7 @@ if not functions -q fisher
     fish -c fisher
 end
 
+# After every cd command execute ll
 function cd
     if count $argv > /dev/null
         builtin cd "$argv"; and ll
@@ -18,3 +19,6 @@ function cd
         builtin cd ~; and ll
     end
 end
+
+# Fuck setup
+thefuck --alias | source
