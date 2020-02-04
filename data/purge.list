@@ -3,7 +3,6 @@ aisleriot
 gnome-mahjongg
 gnome-mines
 gnome-sudoku
-remmina
 rhythmbox
 shotwell
 ubuntu-web-launchers
@@ -22,7 +21,6 @@ fonts-liberation
 fonts-lklug-sinhala
 fonts-noto-cjk
 fonts-sil-abyssinica
-fonts-sil-padauk
 fonts-thai-tlwg
 fonts-tibetan-machine
 gedit
@@ -37,4 +35,3 @@ nautilus-share
 orca
 simple-scan
 ubuntu-docs
-ubuntu-software
