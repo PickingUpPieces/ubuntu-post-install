@@ -7,4 +7,6 @@ function setup_swap-esc-caps {
 	
 	superuser_do "setxkbmap -option caps:swapescape"
 
+	setxkbmap -option caps:swapescape
+
 }
