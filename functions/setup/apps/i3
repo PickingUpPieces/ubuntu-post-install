@@ -7,13 +7,13 @@ function setup_i3 {
 	echo_message info "Adding i3 config..."	
   
 	# When bitwarden is in the config, it is already ours
-	# TODO 
   	cat $HOME/.config/regolith/i3/config | grep 'bitwarden' &> /dev/null
   	if [ $? = 0 ]; then
     		echo_message info "i3 config already added"
     		return
   	fi
   
+	# Fitted for regolith
   	cat $(dirname $0)/data/configs/i3config.conf >> $HOME/.config/i3-regolith/config
   
 }

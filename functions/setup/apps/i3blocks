@@ -1,0 +1,10 @@
+#!/bin/bash
+
+function setup_i3blocks {
+ 
+  # Not needed anymore for regolith
+  #superuser_do "cp $(dirname $0)/data/scripts/i3blocks/* /usr/share/i3blocks/"
+
+  #superuser_do "cp $(dirname $0)/data/configs/i3blocks.conf /etc" 
+
+}

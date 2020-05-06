@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+function install_tldr {
+	echo_message info "Installing TLDR..."
+
+	npm install -g tldr 
+	
+   	echo_message success "Installation of 'TLDR' is complete."
+}
